@@ -2,6 +2,6 @@
 
 Master khusu Coding yang sudah Fix
 
-- Installasi "npm install"
+Installasi "npm install"
 
-- React-native run-android
+React-native run-android
