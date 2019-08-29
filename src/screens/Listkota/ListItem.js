@@ -25,7 +25,7 @@ class ListItem extends Component {
       // onPress={() =>this.props.navigation.navigate('KostDetail',{item : this.props.dataItem})}>
           <TouchableOpacity>
               
-            <Card style={styles.container}>
+            <Card style={styles.container} onPress={this.props.paramNavigate}>
         
           <Card.Cover style={styles.image}
             source={(this.props.dataItem.photo != null) ? {uri:`http://${this.props.dataItem.photo}`} : require('../../assets/default.jpeg')} />

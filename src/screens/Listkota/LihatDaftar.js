@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {View, StyleSheet, Content, Dimensions} from "react-native";
 import {ScrollView, FlatList, TouchableOpacity} from "react-native-gesture-handler";
-import { Container, Tab, Tabs, TabHeading, Icon, Text } from 'native-base';
+import { Card, Text } from 'native-base';
 
 import ListItem from "./ListItem";
 import { Button } from "react-native-paper";
@@ -9,7 +9,7 @@ import ButtonFilter from '../../component/ButonFilter';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux'
-import { getKost,sortKos, ambilKost } from '../../_actions/ListKost'
+import { ambilKost } from '../../_actions/ListKost'
 
 
 class LihatDaftar extends Component{
@@ -74,6 +74,7 @@ class LihatDaftar extends Component{
   }
 
   componentDidMount(){
+    this._cekLogin();
     this.props.dispatch(ambilKost())
   }
 
@@ -91,21 +92,20 @@ class LihatDaftar extends Component{
         renderItem={({item}) =>
         (
           // Bungkus dalams satu item
-          <ListItem
-            item={item}
-            navigation={this.props.navigation}
+          <ListItem paramNavigate={() => paramNavigateDetailKost(item)}
+            dataItem={item}
           />
 
         )}
-        keyExtractor={item=>item.id}
+        keyExtractor={(item)=>item.id.toString()}
         showVerticalScrollIndicator ={true}
         >
       </FlatList>
       {/* <FlatList
                 keyExtractor={(item) => item.id.toString()}
-                data={this.props.ambilKost.dataItem}
+                data={this.props.ListKost.dataItem}
                 renderItem={({ item }) => (
-                  <ListItem paramNavigate={() => paramNavigateDetailKos(item)} dataItem={item} />
+                  <ListItem paramNavigate={() => paramNavigateDetailKost(item)} dataItem={item} />
                 )}
                 ListFooterComponent={() => (
                   <View style={{ height: 50 }}></View>
@@ -129,4 +129,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LihatDaftar;
+const mapStateToProps = (state) => {
+  return {
+    ListKost: state.ListKost
+  }
+}
+
+export default connect(mapStateToProps)(LihatDaftar)
