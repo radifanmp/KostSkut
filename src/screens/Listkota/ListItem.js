@@ -22,12 +22,13 @@ class ListItem extends Component {
 
   render() {
     return (
-          <TouchableOpacity
-              onPress={() =>this.props.navigation.navigate('KostDetail',{item : this.props.item})}>
+      // onPress={() =>this.props.navigation.navigate('KostDetail',{item : this.props.dataItem})}>
+          <TouchableOpacity>
+              
             <Card style={styles.container}>
         
           <Card.Cover style={styles.image}
-            source={{ uri: this.props.item.image }} />
+            source={(this.props.dataItem.photo != null) ? {uri:`http://${this.props.dataItem.photo}`} : require('../../assets/default.jpeg')} />
           <View flexDirection={'row'}>
             <IconButton
                   marginLeft={10}
@@ -43,19 +44,19 @@ class ListItem extends Component {
           </View>
         <Card.Content>
           <View style={styles.descriptionContainer}>
-            <Text style={styles.jenis}>{this.props.item.jenis}</Text>
+            <Text style={styles.jenis}>{this.props.dataItem.type}</Text>
             <Text style={styles.separated}>•</Text>
-            <Text style={styles.kondisi}>{this.props.item.kondisi}</Text>
+            <Text style={styles.kondisi}>{this.props.dataItem.room}</Text>
             <Text style={styles.separated}>•</Text>
-            <Text style={styles.alamat}>{this.props.item.alamat}</Text>
+            <Text style={styles.alamat}>{this.props.dataItem.city}</Text>
           </View>
           <View>
             <Text style={styles.harga}>
-              Rp {this.cekNominal(this.props.item.harga)} / Bulan
+              Rp {this.cekNominal(this.props.dataItem.price)} / Bulan
             </Text>
           </View>
           <View style={styles.namaContainer}>
-            <Text style={styles.namaTempat}>{this.props.item.namaTempat}</Text>
+            <Text style={styles.namaTempat}>{this.props.dataItem.house_name}</Text>
           </View>
 
           {/* <View>
@@ -63,10 +64,11 @@ class ListItem extends Component {
           </View> */}
           <View>
             <Button style={styles.buttonx} mode="contained">
-                  <Text style={{color: 'white',fontWeight:'bold'}}>{this.props.item.status}</Text>
+                  <Text style={{color: 'white',fontWeight:'bold'}}>Bisa Booking</Text>
+                  {/* {this.props.item.status} */}
             </Button>
           </View>
-
+          
         </Card.Content>
       </Card>
       </TouchableOpacity>

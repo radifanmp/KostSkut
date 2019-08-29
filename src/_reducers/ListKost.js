@@ -5,38 +5,44 @@ initialState = {
     noPage: 0,
     dataItem: '',
     isModalVisible: false,
-    isLoading: true
+    isLoading: false,
+    isRejectAdd:false,
+    isDoneAdd:false
 }
 
 const ListKost = (state = initialState, action) => {
     switch (action.type){
 
         //fetch data awal
-        case 'GET_HOUSES':
+        case 'GET_HOUSE':
             return{
                 ...state,
                 isLoading: true,
             }
 
-        case 'GET_HOUSES_PENDING':
+        case 'GET_HOUSE_PENDING':
             return{
                 ...state,
+                dataItem: null,
                 isLoading: true,
             }
 
-        case 'GET_HOUSES_FULFILLED':
+        case 'GET_HOUSE_FULFILLED':
             return{
                 ...state,
                 dataItem: action.payload.data,
                 isLoading: false,
             }
 
-        case 'GET_HOUSES_REJECTED':
+        case 'GET_HOUSE_REJECTED':
             return{
                 ...state,
                 isListKost: false,
                 error: payload.message
             }
+
+        default:
+            return state;
     }
 }
 
