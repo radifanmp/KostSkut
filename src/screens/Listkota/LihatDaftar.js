@@ -74,7 +74,7 @@ class LihatDaftar extends Component{
   }
 
   componentDidMount(){
-    this._cekLogin();
+    // this._cekLogin();
     this.props.dispatch(ambilKost())
   }
 
@@ -88,7 +88,7 @@ class LihatDaftar extends Component{
       <ScrollView style={{ top:0, left:0, right:0, bottom:0}}>
       <FlatList
         style={styles.stretch}
-        data={this.props.ListItem.dataItem}
+        data={this.props.ListKost.dataItem}
         renderItem={({item}) =>
         (
           // Bungkus dalams satu item

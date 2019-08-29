@@ -253,6 +253,9 @@ import PublicStack from './src/navigator/PublicStack';
 import RouteSwitch from './src/navigator/RouteSwitch'
 
 
+import {Provider} from 'react-redux'
+import Store from './src/_redux/Store'
+
 const TabNavigator = createSwitchNavigator(
   {
     PublicStack: PublicStack,
@@ -262,4 +265,16 @@ const TabNavigator = createSwitchNavigator(
   {headerMode:'none',
   initialRouteName: 'RouteSwitch'}
 );
-export default createAppContainer(TabNavigator)
+const TabContainer = createAppContainer(TabNavigator);
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={Store}>
+        <TabContainer />
+      </Provider>
+    )
+  }
+}
+
+export default App;
